@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel = "stylesheet" href = "css/bootstrap.min.css"/>
     <link rel = "stylesheet" href = "css/bootstrap-theme.min.css"/>
+    <link rel = "stylesheet" href = "css/community.css"/>
     <script src="js/bootstrap.min.js" type = "application/javascript"></script>
 </head>
 <body>
@@ -37,24 +38,37 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="container-fluid">
+  </div> 
+</nav>
+ <div class="container-fluid main">
   		<div class="row">
     		<div class = "col-lg-9 col-md-12 col-sm-12 col-xs-12">    			
     			<h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增</h2>
     			<hr>
-    			<form action="">
+    			<form action="/publish" method="post">
     				<div class="form-group">
     				  	<label for="title">標題</label>
     					<input type="text" class="form-control" id="title" name="title" placeholder="標題">
   					</div>
+  					<div class="form-group">
+    				  	<label for="title">標題補充</label>
+    				  	<textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+    					
+  					</div>
+  					<div class="form-group">
+    				  	<label for="title">標籤</label>
+    					<input type="text" class="form-control" id="tag" name="tag" placeholder="輸入標籤">
+  					</div>
+  					<button type="submit" class="btn btn-success btn-publish">new</button>
     			</form>
     		</div>
-    		<div class = "col-lg-3 col-md-12 col-sm-12 col-xs-12"></div>
+    		<div class = "col-lg-3 col-md-12 col-sm-12 col-xs-12">
+    			<h3>指南</h3>
+    			(1)<br>
+    			(2)<br>
+    			(3)<br>
+    		</div>
   		</div>
 </div>
-  
-  
-</nav>
 </body>
 </html>
