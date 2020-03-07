@@ -1,5 +1,6 @@
 package life.majiang.community.model;
 
+
 public class Quesstion {
 	private Integer id;
 	private String title;

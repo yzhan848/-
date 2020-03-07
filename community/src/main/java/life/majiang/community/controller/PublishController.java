@@ -32,24 +32,51 @@ public class PublishController {
 	
 	@PostMapping("/publish")
 	public String doPublish(
-	@RequestParam("title") String title,
-	@RequestParam("description") String description,
-	@RequestParam("tag") String tag,
+	@RequestParam(value = "title", required = false) String title,
+	@RequestParam(value = "description", required = false) String description,
+	@RequestParam(value = "tag", required = false) String tag,
 	HttpServletRequest request,
 	Model model) {
 		
+		model.addAttribute("title",title);
+		model.addAttribute("description",description);
+		model.addAttribute("tag",tag);
+		
+		if ("".equals(title)) {
+			model.addAttribute("error","標題要填寫");
+			return "publish";
+		}
+		
+		if ("".equals(description)) {
+			model.addAttribute("error","內容要填寫");
+			return "publish";
+		}
+		
+		if ("".equals(tag)) {
+			model.addAttribute("error","標籤要填寫");
+			return "publish";
+		}
+		
+		
+
+		
 		User user = null;
 		Cookie[] cookies = request.getCookies();
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("token")) {
-				String token = cookie.getValue();
-				user = userMapper.findByToken(token);
-				if (user != null) {
-					request.getSession().setAttribute("user",user);
+		
+		if (cookies !=null && cookies.length !=0) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("token")) {
+					String token = cookie.getValue();
+					user = userMapper.findByToken(token);
+					if (user != null) {
+						request.getSession().setAttribute("user",user);
+					}
+					break;
 				}
-				break;
 			}
 		}
+		
+
 		
 		if (user == null) {
 			model.addAttribute("error","未登錄");
