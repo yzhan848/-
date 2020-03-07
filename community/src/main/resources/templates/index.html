@@ -48,16 +48,17 @@
     		<div class = "col-lg-9 col-md-12 col-sm-12 col-xs-12">    			
     			<h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>留言</h2>
     			<hr>
-    			<div class="media">
+    			<div class="media" th:each="question : ${questions}">
   					<div class="media-left">
     					<a href="#">
-      						<img class="media-object img-rounded" src="https://avatars2.githubusercontent.com/u/37919609?v=4">
+      						<img class="media-object img-rounded"
+      								th:src="${question.user.avatarUrl}">
     					</a>
   					</div>
   					<div class="media-body">
-    					<h4 class="media-heading">Media</h4>
-    						Media heading<br>
-    						<span class="text-desc">............</span>
+    					<h4 class="media-heading" th:text="${question.title}">Media</h4>
+    						<span th:text="${question.description}"></span><br>
+    						<span class="text-desc"><span th:text="${question.commentCount}"></span>個回復.<span th:text="${question.viewCount}"></span>次游覽</span>
     						
   					</div>
 				</div>
