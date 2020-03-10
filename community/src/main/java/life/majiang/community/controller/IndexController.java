@@ -22,19 +22,24 @@ import life.majiang.community.service.QuestionService;
 @Controller
 public class IndexController {
 
+	//注入
 	@Autowired
 	private UserMapper userMapper;
 	
 	@Autowired
 	private QuestionService questionService;
 	
+	//@RequestMapping(method = RequestMethod.GET)的縮寫
 	@GetMapping("/")
 	public String index(HttpServletRequest request,
 						Model model,
 						@RequestParam(name = "page",defaultValue = "1") Integer page,
 						@RequestParam(name = "size",defaultValue = "5") Integer size) {
 		
-		Cookie[] cookies = request.getCookies();
+		//HttpServletRequest對象代表客戶端的請求
+		
+		
+		Cookie[] cookies = request.getCookies();//該方法返回客戶端的所有cookie對象，結果是一個cookie數組。
 		
 		if (cookies !=null && cookies.length !=0) {
 			for (Cookie cookie : cookies) {

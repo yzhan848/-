@@ -9,8 +9,14 @@ public class PaginationDTO {
 	private boolean showFirstPage;
 	private boolean showNext;
 	private boolean showEndPage;
+	
+	//當前頁
 	private Integer page;
+	
+	//組成頁次排序，例:1,2,3,4,5
 	private List<Integer> pages = new ArrayList<>();
+	
+	//總頁數
 	private Integer totalPage;
 	
 	
@@ -63,40 +69,40 @@ public class PaginationDTO {
 	public void setPages(List<Integer> pages) {
 		this.pages = pages;
 	}
-	public void setPagination(Integer totalCount, Integer page, Integer size) {
-
-		
-		
+	public void setPagination(Integer totalCount, Integer page, Integer size) {		
 		
 		if ( totalCount % size ==0 ) {
+			//總頁數
 			totalPage = totalCount / size;
 		} 
 		else {
+			//總頁數
 			totalPage = totalCount / size + 1;			
 		}
-		
-		
-
-		
-		
+				
+		//當前頁
 		this.page = page;
-		pages.add(page);
+		
+		//組成頁次排序
+		pages.add(page);//[4]
 		for (int i=1;i<=3;i++) {
 			if (page-i>0) {
-				pages.add(0,page-i);
+				pages.add(0,page-i);//[1,2,3,4]
 			}
 			
 			if (page+i <= totalPage) {
-				pages.add(page+i);
+				pages.add(page+i);//[1,2,3,4,5]
 			}
 		}
 		
 		
 		
 		if ( page ==1 ) {
+			//"<"不顯示
 			showPrevious = false;
 		}
 		else {
+			//"<"顯示
 			showPrevious = true;
 		}
 		

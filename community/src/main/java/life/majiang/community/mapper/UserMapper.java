@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import life.majiang.community.model.User;
 
+//主要提供了CRUD註解
 @Mapper
 public interface UserMapper {
 
