@@ -69,16 +69,9 @@ public class PaginationDTO {
 	public void setPages(List<Integer> pages) {
 		this.pages = pages;
 	}
-	public void setPagination(Integer totalCount, Integer page, Integer size) {		
+	public void setPagination(Integer totalPage, Integer page) {		
 		
-		if ( totalCount % size ==0 ) {
-			//總頁數
-			totalPage = totalCount / size;
-		} 
-		else {
-			//總頁數
-			totalPage = totalCount / size + 1;			
-		}
+		this.totalPage = totalPage;
 				
 		//當前頁
 		this.page = page;

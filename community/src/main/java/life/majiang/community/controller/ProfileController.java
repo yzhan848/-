@@ -52,7 +52,7 @@ public class ProfileController {
 		
 		if ("questions".equals(action)) {
 			model.addAttribute("section","questions");
-			model.addAttribute("sessionName","Me's 留言");
+			model.addAttribute("sessionName","我的留言");
 		}
 		else if ("replies".equals(action)) {
 			model.addAttribute("section","replies");

@@ -26,17 +26,31 @@ public class QuestionService {
 	public PaginationDTO list(Integer page, Integer size) {
 		
 		PaginationDTO paginationDTO = new PaginationDTO();
+		//總頁數
+		Integer totalPage;
+		
 		Integer totalCount = quesstionMapper.count();
-		paginationDTO.setPagination(totalCount,page,size);
+		
+		if ( totalCount % size ==0 ) {
+			//總頁數
+			totalPage = totalCount / size;
+		} 
+		else {
+			//總頁數
+			totalPage = totalCount / size + 1;			
+		}
+		
+		
 		
 		if (page<1) {
 			page = 1;
 		}
 		
-		if (page > paginationDTO.getTotalPage()) {
-			page = paginationDTO.getTotalPage();
+		if (page > totalPage) {
+			page = totalPage;
 		}
 		
+		paginationDTO.setPagination(totalPage,page);
 		Integer offset = size * (page - 1);
 		
 		List <Quesstion> quesstions = quesstionMapper.list(offset,size);
@@ -59,16 +73,32 @@ public class QuestionService {
 	public PaginationDTO list(Integer userId, Integer page, Integer size) {
 		
 		PaginationDTO paginationDTO = new PaginationDTO();
+		
+		//總頁數
+		Integer totalPage;
+		
 		Integer totalCount = quesstionMapper.countByUserId(userId);
-		paginationDTO.setPagination(totalCount,page,size);
+		
+		if ( totalCount % size ==0 ) {
+			//總頁數
+			totalPage = totalCount / size;
+		} 
+		else {
+			//總頁數
+			totalPage = totalCount / size + 1;			
+		}
+		
+		
 		
 		if (page<1) {
 			page = 1;
 		}
 		
-		if (page > paginationDTO.getTotalPage()) {
-			page = paginationDTO.getTotalPage();
+		if (page > totalPage) {
+			page = totalPage;
 		}
+		
+		paginationDTO.setPagination(totalPage,page);
 		
 		Integer offset = size * (page - 1);
 		
