@@ -18,8 +18,7 @@ import life.majiang.community.service.QuestionService;
 @Controller
 public class ProfileController {
 	
-	@Autowired
-	private UserMapper userMapper;
+
 	
 	@Autowired
 	private QuestionService questionService;
@@ -30,22 +29,9 @@ public class ProfileController {
 						  Model model,
 						  @RequestParam(name = "page",defaultValue = "1") Integer page,
 						  @RequestParam(name = "size",defaultValue = "5") Integer size) {
-		User user = null;
-		Cookie[] cookies = request.getCookies();//該方法返回客戶端的所有cookie對象，結果是一個cookie數組。
+
 		
-		if (cookies !=null && cookies.length !=0) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("token")) {
-					String token = cookie.getValue();
-					user = userMapper.findByToken(token);
-					if (user != null) {
-						request.getSession().setAttribute("user",user);
-					}
-					break;
-				}
-			}
-		}
-		
+		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
 			return "redirect:/";
 		}
