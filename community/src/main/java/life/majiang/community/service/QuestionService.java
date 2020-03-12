@@ -121,4 +121,15 @@ public class QuestionService {
 		
 	}
 
+	public QuestionDTO getById(Integer id) {
+		
+		Quesstion quesstion= quesstionMapper.getById(id);
+		QuestionDTO questionDTO = new QuestionDTO();
+		BeanUtils.copyProperties(quesstion, questionDTO);
+		User user = userMapper.findById(quesstion.getCreator());
+		questionDTO.setUser(user);
+		
+		return questionDTO;
+	}
+
 }
