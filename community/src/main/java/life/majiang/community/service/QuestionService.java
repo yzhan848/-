@@ -53,6 +53,7 @@ public class QuestionService {
 		paginationDTO.setPagination(totalPage,page);
 		Integer offset = size * (page - 1);
 		
+		
 		List <Quesstion> quesstions = quesstionMapper.list(offset,size);
 		List <QuestionDTO> questionDTOList = new ArrayList<>();
 		
@@ -130,6 +131,20 @@ public class QuestionService {
 		questionDTO.setUser(user);
 		
 		return questionDTO;
+	}
+
+	public void createOrUpdate(Quesstion quesstion) {
+		if (quesstion.getId() == null) {
+			quesstion.setGmtCreate(System.currentTimeMillis());
+			quesstion.setGmtModified(quesstion.getGmtCreate());
+			quesstionMapper.create(quesstion);
+			
+		} else {
+			
+			quesstion.setGmtModified(quesstion.getGmtCreate());
+			quesstionMapper.update(quesstion);
+		}
+		
 	}
 
 }
